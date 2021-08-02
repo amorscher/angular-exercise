@@ -7,11 +7,6 @@ import { environment } from 'src/environments/environment';
 import { Hotel } from '../model/hotels.model';
 
 
-const headerDict = {
-    'x-rapidapi-key': '77753c8dcfmsh78aa2e54ed45d33p16bb13jsnb26148d8beaa',
-    'x-rapidapi-host': 'hotels4.p.rapidapi.com'
-}
-
 const HOTEL_API_URL = `https://hotels4.p.rapidapi.com/properties/list`;
 
 @Injectable({
@@ -19,12 +14,20 @@ const HOTEL_API_URL = `https://hotels4.p.rapidapi.com/properties/list`;
 })
 export class FindHotelsService {
 
+    /**
+     * Date format used by the API
+     */
     readonly dateFormat: string = 'yyyy-MM-dd';
 
 
     constructor(private httpClient: HttpClient, private datePipe: DatePipe) { }
 
 
+    /**
+     * Performs REST call to HOTEL_API_URL to retrieve available hotels
+     * @param cityId the API locationId needed to identify the city
+     * @returns Obserable of all hotels
+     */
     public findHotelsByCityId(cityId: number): Observable<Hotel[]> {
 
         const today = new Date();
@@ -48,10 +51,10 @@ export class FindHotelsService {
             params: httpParams
         };
 
-        const request = this.httpClient.get(HOTEL_API_URL, requestOptions).pipe(map(response => {
+        const foundHotels$ = this.httpClient.get(HOTEL_API_URL, requestOptions).pipe(map(response => {
             const foundHotels: Hotel[] = [];
             console.log(response);
-            //we do the transformation of the response here
+            //we do the transformation of the response to our hotel model
             (response as any).data.body.searchResults.results.forEach((result: any) => {
                 const hotel: Hotel = {
                     id: result.id,
@@ -67,10 +70,14 @@ export class FindHotelsService {
             return foundHotels;
         }));
 
-        return request;
+        return foundHotels$;
     }
 
-
+    /**
+     * Formats the given date 
+     * @param date 
+     * @returns formatted date as string
+     */
     private formatDate(date: Date): string  {
         return this.datePipe.transform(date,this.dateFormat)as string;
     }

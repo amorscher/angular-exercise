@@ -1,5 +1,9 @@
 
 
+/**
+ * All available cities for search
+ * Map of city-name to locationid provided by the API
+ */
 export const CITIES = {
 
     Bregenz:32999,
