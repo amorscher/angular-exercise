@@ -65,7 +65,7 @@ export class FindHotelsService {
                     address: result.address.streetAddress,
                     price: result.ratePlan?result.ratePlan.price.exactCurrent:-1
                 }
-                console.log(hotel);
+                console.log("Hotel",hotel);
                 foundHotels.push(hotel);
             });
             return foundHotels;

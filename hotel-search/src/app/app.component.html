@@ -1,5 +1,37 @@
 <!-- <router-outlet></router-outlet> -->
 
-<div *ngFor="let hotel of hotels$ | async">
-{{hotel.name}}
-</div>
+
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+    <label >City </label>
+    <select  formControlName="city">
+        <option *ngFor="let cityName of cityNames" [ngValue]="cities[cityName]">{{cityName}}</option>
+     </select>
+     <label >From Date: </label>
+     <input type="date" formControlName="fromDate" />
+     <label >To Date: </label>
+     <input type="date" formControlName="toDate"  />
+    <button type="submit" >Search</button>
+</form>
+
+
+<div class="home-container" *ngIf="loading">Loading...</div>
+
+<table>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>stars</th>
+      <th>customer rating</th>
+      <th>address</th>
+      <th>price</th>
+    </tr>
+    <tr *ngFor="let hotel of hotels$ | async">
+      <td>{{hotel.id}}</td>
+      <td>{{hotel.name}}</td>
+      <td>{{hotel.starRating}}</td>
+      <td>{{hotel.customerRating}}</td>
+      <td>{{hotel.address}}</td>
+      <td>{{hotel.price}}</td>
+    </tr>
+</table>
+
