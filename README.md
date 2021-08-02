@@ -13,7 +13,19 @@
    =- _=-=- -_=-=_,-"          |
      =- =- -=.--"
 </pre>
+
+As a backend [Hotel4 API](https://rapidapi.com/apidojo/api/hotels4/) is used.
 ## Exercise 1: Explore the code
+
+- checkout using
+
+    > git clone https://github.com/amorscher/angular-exercise.git
+
+- Draw some architecture 
+- Inspect the structures of
+    - API model
+    - UI model
+- Explain what is going on
 
 ## Exercise 2: Search UI
   
