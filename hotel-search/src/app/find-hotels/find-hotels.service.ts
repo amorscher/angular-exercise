@@ -53,6 +53,7 @@ export class FindHotelsService {
 
         const foundHotels$ = this.httpClient.get(HOTEL_API_URL, requestOptions).pipe(map(response => {
             const foundHotels: Hotel[] = [];
+            //log the response to see the structure
             console.log(response);
             //we do the transformation of the response to our hotel model
             (response as any).data.body.searchResults.results.forEach((result: any) => {

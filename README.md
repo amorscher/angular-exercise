@@ -1,31 +1,53 @@
-# angular-exercise
-## We are doing a hotel search app
+# Angular-exercise
 
-- Use case 1: Search hotels by city
-    - User chooses city to search hotels for
-    - Users triggers search
-    - User gets search results displayed
-        - We want to display following properties of the found hotels
-            - id
-            - name
-            - stars
-            - customer rating
-            - address
-            - price
+**We are doing a hotel search app!!!!!!!!!!!!**
 
-- Use Case 2: Search available hotels for period
-    - User enter start data and end date
-    - User triggers search
-    - User gets search results displayed
-        - We want to display following properties of the found hotels
-            - id
-            - name
-            - stars
-            - customer rating
-            - address
-            - price
+<pre>
+           |
+         \ _ /
+       -= (_) =-
+         /   \         _\/_
+           |           //o\  _\/_
+    _____ _ __ __ ____ _ | __/o\\ _
+  =-=-_-__=_-= _=_=-=_,-'|"'""-|-,_
+   =- _=-=- -_=-=_,-"          |
+     =- =- -=.--"
+</pre>
+## Exercise 1: Explore the code
 
+## Exercise 2: Search UI
+  
+Design and Implementation of following use case:
+### Use case 1: Search hotels by city
+
+1. User chooses city to search hotels for
+1. Users triggers search
+1. User gets search results displayed. Following properties should be displayed :
+
+    - id
+    - name
+    - stars 
+    - customer rating
+    - address
+    - price
+## Exercise 3: Search Query
+  
+  Design and Implementation of following use case:
+
+### Use case 2: Search available hotels for period
+
+1. User enters start data and end date
+1. User triggers search
+1. User gets search results displayed. Following properties should be displayed :
+
+    - id
+    - name
+    - stars 
+    - customer rating
+    - address
+    - price
+
+## Excecise 4: Sorting
 - Use Case 3: Sorting results
 
-- Use Case 4
     
