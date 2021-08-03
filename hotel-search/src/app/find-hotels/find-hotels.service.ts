@@ -60,7 +60,7 @@ export class FindHotelsService {
                 const hotel: Hotel = {
                     id: result.id,
                     name: result.name,
-                    starRating: result.starRating,
+                    starRating: Math.round(result.starRating),
                     customerRating: result.guestReviews?result.guestReviews.rating:-1,
                     address: result.address.streetAddress,
                     price: result.ratePlan?result.ratePlan.price.exactCurrent:-1

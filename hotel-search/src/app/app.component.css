@@ -3,7 +3,41 @@ label {
     font: 1rem 'Fira Sans', sans-serif;
 }
 
-input,
-label {
-    margin: .4rem 0;
+.loading{
+    font:x-large 'Fira Sans', sans-serif;
 }
+
+input{
+    margin: 5px;
+    margin-left: 3px;
+}
+
+label {
+    margin: 5px;
+}
+
+select{
+    margin: 5px;
+    margin-left: 3px;
+}
+
+.results{
+    border-collapse: collapse;
+    font: 1rem 'Fira Sans', sans-serif;
+    width:80%;
+    margin:20px;
+}
+
+.resultHead{
+    background-color: rgb(212, 205, 205);
+}
+
+td {
+    text-align: center;
+  }
+  tr:hover {
+    background-color:  rgb(212, 205, 205);;
+  }
+table, td, th {
+    border: 1px solid black;
+  }

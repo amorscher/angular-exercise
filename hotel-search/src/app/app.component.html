@@ -3,7 +3,7 @@
 
 <form [formGroup]="searchForm" (ngSubmit)="search()">
     <label >City </label>
-    <select  formControlName="city">
+    <select formControlName="city">
         <option *ngFor="let cityName of cityNames" [ngValue]="cities[cityName]">{{cityName}}</option>
      </select>
      <label >From Date: </label>
@@ -14,10 +14,10 @@
 </form>
 
 
-<div class="home-container" *ngIf="loading">Loading...</div>
+<div class="loading" *ngIf="loading">Loading...</div>
 
-<table>
-    <tr>
+<table class="results">
+    <tr class = "resultHead">
       <th>id</th>
       <th>name</th>
       <th>stars</th>
@@ -28,10 +28,12 @@
     <tr *ngFor="let hotel of hotels$ | async">
       <td>{{hotel.id}}</td>
       <td>{{hotel.name}}</td>
-      <td>{{hotel.starRating}}</td>
-      <td>{{hotel.customerRating}}</td>
-      <td>{{hotel.address}}</td>
-      <td>{{hotel.price}}</td>
+      <td>
+        <span *ngFor="let n of numSequence(hotel.starRating)">★</span>
+        <span *ngFor="let n of numSequence(5-hotel.starRating)">☆</span></td>
+      <td>{{hotel.customerRating}} out of 10</td>
+      <td>{{hotel.address?hotel.address:'not-available'}}</td>
+      <td>{{hotel.price}}€</td>
     </tr>
 </table>
 

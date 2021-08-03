@@ -31,6 +31,11 @@ export class AppComponent {
 
   }
 
+  numSequence(n: number): Array<number> {
+    const length = Math.round(n);    
+    return Array(length);
+  }
+
   public search(){
     this.loading =true;
     this.hotels$ = this.findHotelService.findHotelsByCityId(this.searchForm.value.city).pipe(tap(()=>this.loading=false));
