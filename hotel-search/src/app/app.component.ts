@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { FindHotelsService } from './find-hotels/find-hotels.service';
@@ -18,10 +18,10 @@ export class AppComponent {
   loading = false;
 
 
- public searchForm:FormGroup = new FormGroup({
-    city: new FormControl(this.cities.Bludenz),
-    fromDate: new FormControl("2021-08-03"),
-    toDate: new FormControl("2021-08-03")
+ public searchForm:UntypedFormGroup = new UntypedFormGroup({
+    city: new UntypedFormControl(this.cities.Bludenz),
+    fromDate: new UntypedFormControl("2021-08-03"),
+    toDate: new UntypedFormControl("2021-08-03")
   });
 
 
