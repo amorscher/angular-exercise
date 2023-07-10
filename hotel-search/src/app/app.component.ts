@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { FindHotelsService } from './find-hotels/find-hotels.service';
 import { CITIES, Hotel } from './model/hotels.model';
 

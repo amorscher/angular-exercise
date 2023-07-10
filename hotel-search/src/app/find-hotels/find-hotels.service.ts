@@ -70,7 +70,7 @@ export class FindHotelsService {
             headers: new HttpHeaders({ 'content-type': 'application/json', ...environment.API_KEYS_HEADER }),
         };
 
-        const foundHotels$ = this.httpClient.post(HOTEL_API_URL, requestBody, requestOptions).pipe(map(response => {
+        const foundHotels$ = this.httpClient.post(HOTEL_API_URL, requestBody, requestOptions).pipe(map((response:any) => {
             const foundHotels: Hotel[] = [];
             //log the response to see the structure
             console.log(response);
