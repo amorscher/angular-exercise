@@ -40,7 +40,7 @@ Design and Implementation of following use case:
     - name
     - stars 
     - customer rating
-    - address
+    - location
     - price
 ## Exercise 3: Search Query
   

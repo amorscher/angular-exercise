@@ -2,13 +2,13 @@
 
 /**
  * All available cities for search
- * Map of city-name to locationid provided by the API
+ * Map of city-name to location-id provided by the API
  */
 export const CITIES = {
 
-    Bregenz:32999,
-    Bludenz:43390,
-    Dornbirn:34748
+    Bregenz:5100,
+    Bludenz:500274,
+    Dornbirn:5101
 
 }
 
@@ -18,7 +18,7 @@ export interface Hotel{
     id:number
 
     name:string;
-    address:string
+    location:string
 
     starRating:number;
     customerRating:number;
