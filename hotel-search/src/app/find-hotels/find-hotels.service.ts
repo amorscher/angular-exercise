@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 import { Hotel } from '../model/hotels.model';
 
 
-const HOTEL_API_URL = `https://hotels4.p.rapidapi.com/properties/list`;
+
+const HOTEL_API_URL = `https://hotels4.p.rapidapi.com/properties/v2/list`;
 
 @Injectable({
     providedIn: 'root'
@@ -31,41 +32,59 @@ export class FindHotelsService {
     public findHotelsByCityId(cityId: number): Observable<Hotel[]> {
 
         const today = new Date();
+        console.log(today)
         const inOneWeek = new Date();
         inOneWeek.setDate(inOneWeek.getDate() + 7);
 
 
-        const httpParams = new HttpParams()
-            .append("adults1", '1')
-            .append("pageNumber", '1')
-            .append("destinationId", cityId.toString())
-            .append("pageSize", '25')
-            .append("checkOut", this.formatDate(today))
-            .append("checkIn", this.formatDate(inOneWeek))
-            .append("sortOrder", 'PRICE')
-            .append("locale", 'en_US')
-            .append("currency", 'EUR');
+
+        const requestBody = {
+            "currency": "EUR",
+            "eapid": 1,
+            "locale": "de_DE",
+            "siteId": 300000001,
+            "destination": {
+                "regionId": cityId.toString()
+            },
+            "checkInDate": {
+                "day": today.getDate(),
+                "month": today.getMonth() + 1,
+                "year": today.getFullYear()
+            },
+            "checkOutDate": {
+                "day": inOneWeek.getDate(),
+                "month": inOneWeek.getMonth() + 1,
+                "year": today.getFullYear()
+            },
+            "rooms": [
+                {
+                    "adults": 2
+                }
+            ],
+            "resultsStartingIndex": 0,
+            "resultsSize": 30,
+            "sort": "PRICE_LOW_TO_HIGH",
+        }
 
         const requestOptions = {
-            headers: new HttpHeaders(environment.API_KEYS_HEADER),
-            params: httpParams
+            headers: new HttpHeaders({ 'content-type': 'application/json', ...environment.API_KEYS_HEADER }),
         };
 
-        const foundHotels$ = this.httpClient.get(HOTEL_API_URL, requestOptions).pipe(map(response => {
+        const foundHotels$ = this.httpClient.post(HOTEL_API_URL, requestBody, requestOptions).pipe(map(response => {
             const foundHotels: Hotel[] = [];
             //log the response to see the structure
             console.log(response);
             //we do the transformation of the response to our hotel model
-            (response as any).data.body.searchResults.results.forEach((result: any) => {
+            (response as any).data.propertySearch.properties.forEach((result: any) => {
                 const hotel: Hotel = {
                     id: result.id,
                     name: result.name,
-                    starRating: Math.round(result.starRating),
-                    customerRating: result.guestReviews?result.guestReviews.rating:-1,
-                    address: result.address.streetAddress,
-                    price: result.ratePlan?result.ratePlan.price.exactCurrent:-1
+                    starRating: result.star?result.star:Math.floor(Math.random() * 5),
+                    customerRating: result.reviews.score,
+                    location: result.destinationInfo.distanceFromMessaging,
+                    price: result.price ? result.price.lead.amount : -1
                 }
-                console.log("Hotel",hotel);
+                console.log(hotel);
                 foundHotels.push(hotel);
             });
             return foundHotels;
@@ -75,12 +94,12 @@ export class FindHotelsService {
     }
 
     /**
-     * Formats the given date 
-     * @param date 
+     * Formats the given date
+     * @param date
      * @returns formatted date as string
      */
-    private formatDate(date: Date): string  {
-        return this.datePipe.transform(date,this.dateFormat)as string;
+    private formatDate(date: Date): string {
+        return this.datePipe.transform(date, this.dateFormat) as string;
     }
 
 }

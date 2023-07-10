@@ -32,7 +32,7 @@
         <span *ngFor="let n of numSequence(hotel.starRating)">★</span>
         <span *ngFor="let n of numSequence(5-hotel.starRating)">☆</span></td>
       <td>{{hotel.customerRating}} out of 10</td>
-      <td>{{hotel.address?hotel.address:'not-available'}}</td>
+      <td>{{hotel.location?hotel.location:'not-available'}}</td>
       <td>{{hotel.price}}€</td>
     </tr>
 </table>

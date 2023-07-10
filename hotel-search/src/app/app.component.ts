@@ -20,8 +20,8 @@ export class AppComponent {
 
  public searchForm:UntypedFormGroup = new UntypedFormGroup({
     city: new UntypedFormControl(this.cities.Bludenz),
-    fromDate: new UntypedFormControl("2021-08-03"),
-    toDate: new UntypedFormControl("2021-08-03")
+    fromDate: new UntypedFormControl("2023-07-11"),
+    toDate: new UntypedFormControl("2023-07-16")
   });
 
 
@@ -32,7 +32,7 @@ export class AppComponent {
   }
 
   numSequence(n: number): Array<number> {
-    const length = Math.round(n);    
+    const length = Math.round(n);
     return Array(length);
   }
 
